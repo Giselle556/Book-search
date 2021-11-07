@@ -86,7 +86,7 @@ const SavedBooks = () => {
           <h1>Viewing saved books!</h1>
         </Container>
       </Jumbotron>
-      <Containers>
+      <Container>
         <h2>
           {userData.savedBooks.length
             ? `Viewing ${userData.savedBooks.length} saved ${
@@ -120,7 +120,7 @@ const SavedBooks = () => {
             );
           })}
         </CardColumns>
-      </Containers>
+      </Container>
     </>
   );
 };
