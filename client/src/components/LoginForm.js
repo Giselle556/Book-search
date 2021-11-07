@@ -1,59 +1,43 @@
-// see SignupForm.js for comments
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
+
+import { loginUser } from '../utils/API';
 import Auth from '../utils/auth';
-import { LOGIN_USER } from '../utils/mutations';
-import { useMutation } from '@apollo/react-hooks';
 
 const LoginForm = () => {
-  const [login] = useMutation(LOGIN_USER);
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setUserFormData({ 
-      ...userFormData, 
-      [name]: value 
-    });
+    setUserFormData({ ...userFormData, [name]: value });
   };
 
-  const handleFormSubmit = async event => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-     // check if form has everything (as per react-bootstrap docs)
-     const form = event.currentTarget;
-     if (form.checkValidity() === false) {
-       event.preventDefault();
-       event.stopPropagation();
-     }
-
-    try {
-      const { data } = await login({
-        variables: {...userFormData} 
-      });
-      
-      Auth.login(data.login.token);
-    } catch (e) {
-      console.error(e);
-      setShowAlert(true);
+    // check if form has everything (as per react-bootstrap docs)
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
     }
 
-    // try {
-    //   const response = await login(userFormData);
+    try {
+      const response = await loginUser(userFormData);
 
-    //   if (!response.ok) {
-    //     throw new Error('Something went wrong!');
-    //   }
+      if (!response.ok) {
+        throw new Error('something went wrong!');
+      }
 
-    //   const { token, user } = await response.json();
-    //   console.log(user);
-    //   Auth.login(token);
-    // } catch (err) {
-    //   console.error(err);
-    //   setShowAlert(true);
-    // }
+      const { token, user } = await response.json();
+      console.log(user);
+      Auth.login(token);
+    } catch (err) {
+      console.error(err);
+      setShowAlert(true);
+    }
 
     setUserFormData({
       username: '',
@@ -76,7 +60,6 @@ const LoginForm = () => {
             name='email'
             onChange={handleInputChange}
             value={userFormData.email}
-            autoComplete= "on"
             required
           />
           <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
@@ -90,7 +73,6 @@ const LoginForm = () => {
             name='password'
             onChange={handleInputChange}
             value={userFormData.password}
-            autoComplete= "on"
             required
           />
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
@@ -107,4 +89,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-

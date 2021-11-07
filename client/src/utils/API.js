@@ -1,5 +1,5 @@
 // route to get logged in user's info (needs the token)
-export const GET_ME = (token) => {
+export const getMe = (token) => {
   return fetch('/api/users/me', {
     headers: {
       'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export const saveBook = (bookData, token) => {
 };
 
 // remove saved book data for a logged in user
-export const removeBook = (bookId, token) => {
+export const deleteBook = (bookId, token) => {
   return fetch(`/api/users/books/${bookId}`, {
     method: 'DELETE',
     headers: {
