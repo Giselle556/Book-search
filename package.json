@@ -9,18 +9,10 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Giselle556/Book-search.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Giselle556/Book-search/issues"
-  },
-  
-  "dependencies": {
-    "concurrently": "^6.3.0"
+  "devDependencies": {
+    "concurrently": "^5.1.0"
   }
 }
