@@ -1,4 +1,5 @@
 {
+  
   "name": "book-search",
   "version": "1.0.0",
   "description": "",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Giselle556/Book-search/issues"
   },
-  "homepage": "https://github.com/Giselle556/Book-search#readme"
+  "homepage": "https://github.com/Giselle556/Book-search",
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  }
 }
