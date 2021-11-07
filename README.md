@@ -1,4 +1,4 @@
-# Book-search
+<!-- # Book-search
 
 # About
 Application that allows Logged in users to search books and allows the books to be saved and deleted by the user. Saved books will persist when User logs out and logs back in.
@@ -19,3 +19,4 @@ Application that allows Logged in users to search books and allows the books to 
 # Contact
 
 For any questions or concerns about this project, please contact me at giselleesmeborbolla@gmail.com
+ -->
